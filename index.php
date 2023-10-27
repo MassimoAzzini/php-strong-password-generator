@@ -1,7 +1,7 @@
 <?php
 
  $error_msg = '';
- $message = '';
+//  $message = '';
 
  require_once __DIR__ . '/data/functions.php';
 
@@ -17,23 +17,18 @@
   $error_msg = 'Hai inserito un valore minore di 8 o maggiore di 32';
 
  }else{
+  session_start();
+  $_SESSION['message'] = message_return($number_char);
 
-  $message = message_return($number_char);
+  header('Location: ./response_page.php');
 
 }
 
+
+require_once __DIR__ . '/partials/head.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css' integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==' crossorigin='anonymous'/>
-
-  <title>PHP Strong Password Generator</title>
-</head>
 <body class="vh-100 bg-black">
   <div class="container h-100 d-flex justify-content-center align-items-center ">
     <div class="row">
@@ -66,11 +61,11 @@
         </form>
         <!-- END FORM -->
 
-        <?php if(strlen($message) > 0): ?>
+        <!-- <?php if(strlen($message) > 0): ?>
         <div class="bg-info-subtle w-100 py-3 px-5 mt-3 d-flex justify-content-around">
           <span class="fw-bold text-center"><?php echo $message ?> </span>
         </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
 
       </div>  
     </div>

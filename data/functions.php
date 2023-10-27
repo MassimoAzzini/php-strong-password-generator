@@ -12,6 +12,6 @@ function message_return($number_char){
         $n = rand(0, $combLen);
         $pass[] = $comb[$n];
     }
-  return $message = 'Password generata:<br>' .implode($pass);
+  return $message = implode($pass);
 }
 
