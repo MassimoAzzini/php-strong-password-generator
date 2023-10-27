@@ -1,31 +1,26 @@
 <?php
 
-//  $message = '';
-//  $pass = []; 
+ $error_msg = '';
+ $message = '';
 
-//  $number_char = isset($_POST['quantity']) ? $_POST['quantity'] : null;
-
-//  if ($number_char == null){
-//   $message = '';
-//  }else if ($number_char < 8 || $number_char > 32){
-//   $message = 'Hai inserito un valore minore di 7 o maggiore di 32';
-//  }else{
-
-//    $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&@#-';
-//    $combLen = strlen($comb) - 1; 
-//    for ($i = 0; $i < $number_char; $i++) {
-//        $n = rand(0, $combLen);
-//        $pass[] = $comb[$n];
-//    }
-//    $message = 'Password generata:<br>' .implode($pass);
-//  }
  require_once __DIR__ . '/data/functions.php';
-
 
  $number_char = isset($_POST['quantity']) ? $_POST['quantity'] : null;
 
- $message = message_return($number_char);
 
+ if ($number_char == null){
+
+  $error_msg = '';
+
+ }else if ($number_char < 8 || $number_char > 32){
+
+  $error_msg = 'Hai inserito un valore minore di 8 o maggiore di 32';
+
+ }else{
+
+  $message = message_return($number_char);
+
+}
 
 ?>
 
@@ -41,7 +36,6 @@
 </head>
 <body class="vh-100 bg-black">
   <div class="container h-100 d-flex justify-content-center align-items-center ">
-    <!-- <div class="d-flex flex-column align-items-center"> -->
     <div class="row">
       <div class="col-12 d-flex flex-column align-items-center">
         
@@ -53,6 +47,13 @@
         <!-- FORM -->
         <form action="index.php" method="POST" class="bg-light w-100">
           <div class="row">
+
+            <?php if(strlen($error_msg) > 0): ?>
+              <div class="mt-3 d-flex justify-content-center">
+                <span class="fw-bold text-center"><?php echo $error_msg ?> </span>
+              </div>
+            <?php endif; ?>
+
             <div class="col-12 d-flex justify-content-center mt-4">
               <label for="quantity">Lunghezza Password:</label>
               <input class="w-25 ms-3" type="number" id="quantity" name="quantity">
