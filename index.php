@@ -1,24 +1,31 @@
 <?php
 
- $message = '';
- $pass = []; 
+//  $message = '';
+//  $pass = []; 
+
+//  $number_char = isset($_POST['quantity']) ? $_POST['quantity'] : null;
+
+//  if ($number_char == null){
+//   $message = '';
+//  }else if ($number_char < 8 || $number_char > 32){
+//   $message = 'Hai inserito un valore minore di 7 o maggiore di 32';
+//  }else{
+
+//    $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&@#-';
+//    $combLen = strlen($comb) - 1; 
+//    for ($i = 0; $i < $number_char; $i++) {
+//        $n = rand(0, $combLen);
+//        $pass[] = $comb[$n];
+//    }
+//    $message = 'Password generata:<br>' .implode($pass);
+//  }
+ require_once __DIR__ . '/data/functions.php';
+
 
  $number_char = isset($_POST['quantity']) ? $_POST['quantity'] : null;
 
- if ($number_char == null){
-  $message = '';
- }else if ($number_char < 8 || $number_char > 32){
-  $message = 'Hai inserito un valore minore di 7 o maggiore di 32';
- }else{
+ $message = message_return($number_char);
 
-   $comb = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&@#-';
-   $combLen = strlen($comb) - 1; 
-   for ($i = 0; $i < $number_char; $i++) {
-       $n = rand(0, $combLen);
-       $pass[] = $comb[$n];
-   }
-   $message = 'Password generata:<br>' .implode($pass);
- }
 
 ?>
 
